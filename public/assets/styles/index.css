@@ -9,6 +9,12 @@
     --transition: all 0.5s ease;
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+
 /* FONTES DO PROJETO */
 @font-face {
     font-family: gotham;
