@@ -1,0 +1,116 @@
+/* Variáveis */
+:root {
+    /* PALHETA DE CORES DO PROJETO */
+    --secondary-color: #13203b;
+    --third-color: #fca311;
+    --fourty-color: #E5e5e5;
+    --c-body: #ffffff;
+    --box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.08);
+    --transition: all 0.5s ease;
+}
+
+/* FONTES DO PROJETO */
+@font-face {
+    font-family: gotham;
+    src: url("../fonts/Gotham-Book.otf");
+}
+
+
+/* Definições Estilo */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    
+}
+
+.logo-brand{
+    width: 44vw;
+    fill: red;
+}
+
+h2,
+h3,
+h4,
+h5,
+.h2,
+.h3,
+.h4,
+.h5 {
+    font-family: gotham;
+    font-weight: 500;
+    color: var(--30_color);
+}
+
+.p,
+p {
+    font-family: gotham;
+    font-weight: 500;
+    color: #13203b;
+}
+
+a{
+    text-decoration: none;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+.line {
+    width: 60px;
+    height: 10px;
+    background-color: var(--third-color);
+}
+
+/* navbar */
+
+nav {
+    background-color: transparent;
+}
+
+.navbar{
+    width: 100%;
+}
+
+.vertical-line {
+    /*  Elemento Linha Vertical - Como pode ser visto na navbar (entre botao carrinho de COMPRAS e TROCA DE TEMA */
+    width: 1px;
+    border-radius: 5px;
+    height: 45px;
+    background-color: #a5a5b0;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.carrousel {
+    display: block;
+
+}
+
+.carrousel img{
+    width: 80rem;
+}
+
+.carrousel{
+    position: absolute;
+}
+
+.carousel-item {
+    height: 32rem;
+    
+}
+
+
+.noticia {
+    text-align: justify;
+    text-justify: auto;
+}
+.noticia .titulo p{
+    color: silver;
+}
+
+.noticia img{
+    width: 60rem;
+    
+}
