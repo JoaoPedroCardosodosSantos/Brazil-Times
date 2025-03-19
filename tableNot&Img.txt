@@ -1,0 +1,17 @@
+create data siteNoticia;
+create table noticia (
+	idNoticia int auto_increment primary key,
+	titulo varchar(200) not null unique,
+	conteudo text not null,
+	fonte varchar (100) not null,
+	dataNoticia datetime not null
+);
+
+create table imagem (
+	idImagem int auto_increment primary key,
+	idNoticia int not null,
+	constraint fkNoticia foreign key (idNoticia) references noticia (idNoticia),
+	nomeId varchar(100) unique,
+	nome Original varchar(100) not null,
+	url varchar(100) not null 	
+);
