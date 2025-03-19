@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    letter-spacing: 1px;
 }
 body {
     font-family: 'Open Sans', sans-serif;
@@ -12,13 +13,12 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /*background-image: url("../../../uploads/BgLogin.jpg");/ */
     background-size: auto;
-    background: linear-gradient(45deg, black, rgba(110, 109, 109, 0.1), darkblue); 
-    /* background: radial-gradient(darkblue 40%, black, rgba(0,0,0.4)); */
+    background: linear-gradient(45deg, black , rgba(110 , 109, 109, .4) , darkblue ); 
 }
 .content {
-    background-color: #fff;
+    background-color: #fff; 
+    box-shadow: 0 4px 8px 0 rgba(200, 111, 255, .2), 0 6px 20px 0 rgba(40, 220, 255, .19);
     border-radius: 15px;
     width: 960px;
     height: 60%;
@@ -30,9 +30,13 @@ body {
 .content::before {
     content: "";
     position: absolute;
-    background: rgba(0,0,0,.1);
+    background: linear-gradient(135deg, #2c2c2c, #d1cfcf) 
+    padding-box,
+    linear-gradient(144deg, transparent 20%,#e81cff, #40c9ff) 
+    border-box;
+    border: solid 1px transparent;
     backdrop-filter: blur(30px);
-    border: solid 2px white;
+    box-shadow: 0 4px 8px 0 rgba(200, 111, 255, .2), 0 6px 20px 0 rgba(0, 36, 43, 0.19);
     width: 45%;
     height: 100%;
     border-top-left-radius: 15px;
@@ -80,15 +84,16 @@ body {
     transition: background-color .5s;
 }
 .btn-second {
-    background: linear-gradient(90deg, #000, #004 );
-    border: 1px solid #58af9b;
-    transition: background-color .5s;
-
+    background: linear-gradient(45deg, #000, #004 );
+    --webkit-text-fill-color: transparent;
+    --webkit-background-clip: text;
+    border: 1px solid darkblue;
+    transition: all .5s;
+    text-shadow: 0 0 40px white;
 }
 .btn-second:hover {
-    background-color: #fff;
-    border: 1px solid #58af9b;
-    color: #58af9b;
+    transform: scale(1.04);
+    box-shadow: 0 8px 8px 0 rgba(200, 111, 255, .5), 0 6px 20px 0 rgba(40, 220, 255, .7);
 }
 .btn-primary:hover {
     background-color: #fff;
@@ -102,8 +107,11 @@ body {
 }
 .first-column {
     text-align: center;
-    width: 40%;
+    width: 49.5%;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .second-column {
     width: 60%;
@@ -150,9 +158,13 @@ body {
 }
 .form input {
     height: 45px;
-    border: none;
+    border: transparent;
     width: 100%;
     background-color: #ecf0f1; 
+    margin: 5px;
+}
+.form input:focus {
+    outline: none;
 }
 input:-webkit-autofill {
     --webkit-box-shadow: 0 0 0px 1000px #ecf0f1 inset !important;
@@ -163,6 +175,7 @@ input:-webkit-autofill {
   display: flex;
   align-items: center;
   margin: 5px; 
+  border-radius: 20px;
 }
 .icon-modify {
     color: #7f8c8d;
