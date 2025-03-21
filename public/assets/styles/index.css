@@ -1,10 +1,24 @@
 /* Variáveis */
 :root {
     /* PALHETA DE CORES DO PROJETO */
-    --secondary-color: #13203b;
-    --third-color: #fca311;
-    --fourty-color: #E5e5e5;
-    --c-body: #ffffff;
+    --primary-color: #1e1e1e;
+    --secondary-color: #03061c;
+    --third-color: #cdcdcd;
+    --fourth-color: #092122;
+    --fifth-color: #17595a; 
+    --sixth-color: #103d3e;
+    --seventh-color: #1f7677;
+    --eighth-color: #279395;
+    --ninth-color: #060c39;
+    --tenth-color: #2eb0b2;
+    --eleventh-color: #36cdc0;
+    --twelfth-color: #091255;
+    --thirteenth-color: #0c1871;
+    --fourteenth-color: #1324a9;
+    --fifteenth-color: #162ac5;
+    --sixteenth-color: #101e8d;
+    --seventeenth-color: #1930e1;
+
     --box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.08);
     --transition: all 0.5s ease;
 }
@@ -23,10 +37,10 @@
     padding: 0;
     
 }
-
 .logo-brand{
     width: 44vw;
-    fill: red;
+    position: static;
+    transform: scale(1.4);
 }
 
 h2,
@@ -42,8 +56,7 @@ h5,
     color: var(--30_color);
 }
 
-.p,
-p {
+.p, p {
     font-family: gotham;
     font-weight: 500;
     color: #13203b;
@@ -71,8 +84,14 @@ nav {
 
 .navbar{
     width: 100%;
+    display: flex;
 }
-
+.container-fluid a {
+    background: linear-gradient(144deg, var(--primary-color), var(--seventeenth-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .vertical-line {
     /*  Elemento Linha Vertical - Como pode ser visto na navbar (entre botao carrinho de COMPRAS e TROCA DE TEMA */
     width: 1px;
