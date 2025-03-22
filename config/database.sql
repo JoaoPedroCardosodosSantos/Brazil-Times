@@ -1,56 +1,57 @@
--- Create the database
-CREATE DATABASE blogdb;
+create database blogdb;
 
--- Use the database
-USE blogdb;
+use blogdb;
 
--- Create the users table
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- post time
+create table users (
+    id int auto_increment primary key,
+    username varchar(50) not null unique,
+    password varchar(32) not null,
+    is_admin boolean default false, -- define se o usuário é admin
 );
 
--- Create the categories table
-CREATE TABLE categories (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(50) NOT NULL UNIQUE,
-    description TEXT
+create table news (
+    id int auto_increment primary key,
+    user_id int not null, 
+    title varchar(255) not null,
+    descricao text not null unique,
+    status enum('ativa', 'arquivada', 'deletada') default 'arquivada',
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp on update current_timestamp,
+    foreign key (user_id) references users(id),
+    idioma ('português', 'inglês'),
+    categoria ('Segurança de Redes',
+    'Segurança de Aplicações',
+    'Segurança em Cloud',
+    'Segurança de Endpoint',
+    'Segurança de Banco de Dados',
+    'Criptografia',
+    'Forense Digital',
+    'Pentesting',
+    'Engenharia Reversa',
+    'Red Team',
+    'Blue Team',
+    'Threat Intelligence',
+    'Gestão de Identidade e Acesso (IAM)',
+    'Análise de Malware',
+    'Segurança de IoT',
+    'Segurança de Sistemas Operacionais',
+    'Segurança Mobile',
+    'Governança, Risco e Compliance (GRC)',
+    'SOC (Security Operations Center)')
+    data publicacao date,
+    tags varchar(50) not null, 
+    noticia text not null unique,
+
 );
 
 
--- Create the posts table
-CREATE TABLE posts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    category_id INT NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL,
-    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- update time
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (category_id) REFERENCES categories(id)
-);
-
--- tabela de status do post
-CREATE TABLE status (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    excluidas INT UNIQUE,
-    agendadas INT UNIQUE,
-    rascunho INT UNIQUE,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (category_id) REFERENCES categories(id)
-);
-
--- table for coments
-CREATE TABLE comments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    post_id INT NOT NULL,
-    user_id INT NOT NULL,
-    content TEXT NOT NULL,
-    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (post_id) REFERENCES posts(id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
+/**
+ create table comments (
+    id int auto_increment primary key,
+    news_id int not null,
+    user_id int not null,
+    content text not null,
+    created_at timestamp default current_timestamp,
+    foreign key (news_id) references news(id),
+    foreign key (user_id) references users(id)
+); **/
