@@ -276,6 +276,25 @@ export const dataNoticias = {
                           <select name="categoria" class="form-select" id="categoria">
                             <option >Cyber Segurança</option>
                             <option>Linux</option>
+                            <option>Segurança de Redes</option>
+                            <option>Segurança de Aplicações</option>
+                            <option>Segurança em Cloud</option>
+                            <option>Segurança de Endpoint</option>
+                            <option>Segurança de Banco de Dados</option>
+                            <option>Criptografia</option>
+                            <option>Forense Digital</option>
+                            <option>Pentesting</option>
+                            <option>Engenharia Reversa</option>
+                            <option>Red Team</option>
+                            <option>Blue Team</option>
+                            <option>Threat Intelligence</option>
+                            <option>Gestão de Identidade e Acesso (IAM)</option>
+                            <option>Análise de Malware</option>
+                            <option>Segurança de IoT</option>
+                            <option>Segurança de Sistemas Operacionais</option>
+                            <option>Segurança Mobile</option>
+                            <option>Governança, Risco e Compliance (GRC)</option>
+                            <option>SOC (Security Operations Center)</option>
                           </select>
                         </div>
                         <br>
