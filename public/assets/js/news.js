@@ -86,7 +86,7 @@ export const news = {
             </ul>
           </div>
       </section>
-            `
+            `,
 
         ];
     }
