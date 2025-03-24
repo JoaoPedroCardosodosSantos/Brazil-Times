@@ -1,12 +1,12 @@
 <?php
 class Rota {
     private $rotas = [
-        '/Brazil-Times' => '/app/views/user/index.html',
-        '/Brazil-Times/public' => '/app/views/user/index.html',
-        '/Brazil-Times/docs' => '/docs/README.html',
-        '/Brazil-Times/app' => '/app/views/user/index.html',
-        '/Brazil-Times/app/views' => '/app/views/user/index.html',
-        '/404' => '/app/views/errors/404_Forbidden.html' 
+        '/' => '/app/views/user/index.html',
+        '/public' => '/app/views/user/index.html',
+        '/docs' => '/docs/README.html',
+        '/app' => '/app/views/user/index.html',
+        '/app/views' => '/app/views/user/index.html',
+        '/404' => '/app/views/errors/404_not_found.html'
     ];
 
     public function __construct() {
@@ -15,12 +15,10 @@ class Rota {
 
     private function handleRouting() {
         $uri = $this->getCleanUri();
+        $path = $this->rotas[$uri] ?? $this->rotas['/404'];
+        $httpCode = isset($this->rotas[$uri]) ? 200 : 404;
 
-        if (isset($this->rotas[$uri])) {
-            $this->redirect($this->rotas[$uri]);
-        } else {
-            $this->redirect($this->rotas['/404'], 404);
-        }
+        $this->serveContent($path, $httpCode);
     }
 
     private function getCleanUri() {
@@ -35,20 +33,19 @@ class Rota {
         return $uri ?: '/';
     }
 
-    private function redirect($path, $httpCode = 301) {
-        if ($httpCode === 404) {
-            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $path)) {
-                http_response_code(404);
-                include $_SERVER['DOCUMENT_ROOT'] . $path;
-                exit;
-            }
-        } elseif (!headers_sent()) {
-            header("Location: $path", true, $httpCode);
+    private function serveContent($path, $httpCode) {
+        $fullPath = $_SERVER['DOCUMENT_ROOT'] . $path;
+        if (file_exists($fullPath)) {
+            http_response_code($httpCode);
+            include $fullPath;
+            exit;
+        } else {
+            http_response_code(500);
+            echo "Erro interno: Arquivo não encontrado.";
             exit;
         }
     }
 }
 
-// Instancia a classe para iniciar o roteamento
 new Rota();
 ?>
