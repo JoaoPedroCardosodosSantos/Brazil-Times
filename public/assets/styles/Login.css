@@ -93,9 +93,6 @@ body {
     -webkit-background-clip: text;
     transition: all .5s ease-in-out; */
 }
-.title-second:hover {
-    text-shadow: 0 0 50px #1930e1;
-}
 .description {
     font-size: 14px;
     font-weight: 300;
