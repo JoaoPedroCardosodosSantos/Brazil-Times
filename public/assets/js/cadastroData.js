@@ -75,7 +75,7 @@ export const dataNoticias = {
                   </td>
                 </tr>
                 <tr class="col-2">
-                  <th>Ddos</th>
+                  <th>DDoS</th>
                   <td>Web</td>
                   <td>Rascunho</td>
                   <td>20/04/2024</td>
@@ -164,9 +164,28 @@ export const dataNoticias = {
                     </select>
                     <br>
                     <span><b>Categoria</b></span>
-                    <select class="form-select">
-                      <option value="interface">Interface</option>
-                      <option value="syber seguranca">Cyber Segurança</option>
+                    <select name="categoria" class="form-select" id="categoria">
+                      <option value="cyber-seguranca">Cyber Segurança</option>
+                      <option value="linux">Linux</option>
+                      <option value="seguranca-redes">Segurança de Redes</option>
+                      <option value="seguranca-aplicacoes">Segurança de Aplicações</option>
+                      <option value="seguranca-cloud">Segurança em Cloud</option>
+                      <option value="seguranca-endpoint">Segurança de Endpoint</option>
+                      <option value="seguranca-banco-dados">Segurança de Banco de Dados</option>
+                      <option value="criptografia">Criptografia</option>
+                      <option value="forense-digital">Forense Digital</option>
+                      <option value="pentesting">Pentesting</option>
+                      <option value="engenharia-reversa">Engenharia Reversa</option>
+                      <option value="red-team">Red Team</option>
+                      <option value="blue-team">Blue Team</option>
+                      <option value="threat-intelligence">Threat Intelligence</option>
+                      <option value="gestao-identidade-acesso-iam">Gestão de Identidade e Acesso (IAM)</option>
+                      <option value="analise-malware">Análise de Malware</option>
+                      <option value="seguranca-iot">Segurança de IoT</option>
+                      <option value="seguranca-sistemas-operacionais">Segurança de Sistemas Operacionais</option>
+                      <option value="seguranca-mobile">Segurança Mobile</option>
+                      <option value="governanca-risco-compliance-grc">Governança, Risco e Compliance (GRC)</option>
+                      <option value="soc-security-operations-center">SOC (Security Operations Center)</option>
                     </select>
                     <br>
                     <span><b>Título</b></span>

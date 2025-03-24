@@ -1,26 +1,48 @@
 <?php
-# Script de roteamento
 class Rota {
-
     private $rotas = [
-        '/Brazil-Times/' => 'Location: http://localhost/Brazil-Times/app/views/user/index.html',
-        '/Brazil-Times/public/' => 'Location: http://localhost/Brazil-Times/app/views/user/index.html',
-        '/Brazil-Times/docs/' =>'Location: http://localhost/Brazil-Times/docs/README.html',
-        '/Brazil-Times/app/' => 'Location: http://localhost/Brazil-Times/app/views/user/index.html',
-        '/Brazil-Times/app/views/' => 'Location: http://localhost/Brazil-Times/app/views/user/index.html'
+        '/' => '/app/views/user/index.html',
+        '/public' => '/app/views/user/index.html',
+        '/docs' => '/docs/README.html',
+        '/app' => '/app/views/user/index.html',
+        '/app/views' => '/app/views/user/index.html',
+        '/404' => '/app/views/errors/404_Not_Found.html'
     ];
 
-    public function __construct(){
+    public function __construct() {
+        $this->handleRouting();
+    }
 
-        foreach($this->rotas as $chave => $valor) {
+    private function handleRouting() {
+        $uri = $this->getCleanUri();
+        $path = $this->rotas[$uri] ?? $this->rotas['/404'];
+        $httpCode = isset($this->rotas[$uri]) ? 200 : 404;
 
-            if($_SERVER['REQUEST_URI'] == $chave) {
-                header($valor);
-                exit;
-            }
+        $this->serveContent($path, $httpCode);
+    }
 
+    private function getCleanUri() {
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uri = rtrim($uri, '/');
+        $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+
+        if ($basePath && strpos($uri, $basePath) === 0) {
+            $uri = substr($uri, strlen($basePath));
+        }
+
+        return $uri ?: '/';
+    }
+
+    private function serveContent($path, $httpCode) {
+        $fullPath = $_SERVER['DOCUMENT_ROOT'] . $path;
+        if (file_exists($fullPath)) {
+            http_response_code($httpCode);
+            include $fullPath;
+            exit;
+        } else {
+            http_response_code(500);
+            echo "Erro interno: Arquivo não encontrado.";
+            exit;
         }
     }
-    
 }
-?>
