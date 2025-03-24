@@ -27,7 +27,7 @@ class Banco {
 
         $dsn = "mysql:host={$this->dbConfig['host']};dbname={$this->dbConfig['dbname']};charset={$this->dbConfig['charset']}";
 
-        while($this->tentativas > 0) {
+        while($this->tentativas > 5) {
 
             try {
 
