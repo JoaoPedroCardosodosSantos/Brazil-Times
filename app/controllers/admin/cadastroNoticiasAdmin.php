@@ -1,42 +1,50 @@
 <?php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: POST');
 
-require_once '../../config/dbconfig.php';
+require_once '../Tools.php';
+require_once '../../../config/dbconfig.php';
 
-header("Content-Type: application/json");
+$dados = json_decode(file_get_contents('php://input'), true);
 
-$json = file_get_contents("php://input");
-$dados = json_decode($json, true);
-
-if (!$dados) {
-    echo json_encode(["erro" => true, "mensagem" => "Dados inválidos."]);
-    echo false;
+if (!Tools::verifyData($dados)) { 
+    echo Tools::responseJSON('Dados inválidos ou incompletos', false);
     exit;
 }
 
 try {
-
     $banco = new Banco();
+
+    if (!$banco->isConectado()) {
+        echo Tools::responseJSON('Erro ao estabelecer conexão com o banco de dados', false);
+        exit;
+    }
+
     $pdo = $banco->getPDO();
 
-    $sql = "INSERT INTO noticia (idioma, categoria, data, hora, tags, titulo, descricao, noticia) 
-            VALUES (:idioma, :categoria, :data, :hora, :tags, :titulo, :descricao, :noticia)";
+    $query = "INSERT INTO posts (user_id, categoria_id, idioma, post_data, post_hora, tags, titulo, descricao, conteudo_noticia)
+              VALUES (:user_id, :categoria_id, :idioma, :post_data, :post_hora, :tags, :titulo, :descricao, :conteudo_noticia)";
 
-    $stmt = $pdo->prepare($sql);
+    $stmt = $pdo->prepare($query);
 
-    $stmt->execute([
-        ':idioma' => $dados['idioma'],
-        ':categoria' => $dados['categoria'],
-        ':data' => $dados['data'],
-        ':hora' => $dados['hora'],
-        ':tags' => $dados['tags'],
-        ':titulo' => $dados['titulo'],
-        ':descricao' => $dados['descricao'],
-        ':noticia' => $dados['noticia']
-    ]);
+    $stmt->bindValue(':user_id', $dados['user_id'], PDO::PARAM_INT);
+    $stmt->bindValue(':categoria_id', $dados['categoria_id'], PDO::PARAM_INT);
+    $stmt->bindValue(':idioma', $dados['idioma'], PDO::PARAM_STR);
+    $stmt->bindValue(':post_data', $dados['post_data'], PDO::PARAM_STR);
+    $stmt->bindValue(':post_hora', $dados['post_hora'], PDO::PARAM_STR);
+    $stmt->bindValue(':tags', $dados['tags'], PDO::PARAM_STR);
+    $stmt->bindValue(':titulo', $dados['titulo'], PDO::PARAM_STR);
+    $stmt->bindValue(':descricao', $dados['descricao'], PDO::PARAM_STR);
+    $stmt->bindValue(':conteudo_noticia', $dados['conteudo_noticia'], PDO::PARAM_STR);
 
-    echo true;
+    if ($stmt->execute()) {
+        $lastId = $pdo->lastInsertId();
+        echo Tools::responseJSON("Dados inseridos com sucesso!", true, ["id_inserido" => $lastId]);
+    } else {
+        echo Tools::responseJSON('Erro ao inserir os dados no banco', false);
+    }
 
 } catch (PDOException $e) {
-    echo json_encode(["erro" => true, "mensagem" => "Erro ao salvar notícia: " . $e->getMessage()]);
+    echo Tools::responseJSON('Erro ao salvar os dados no banco: ' . $e->getMessage(), false);
 }
 ?>

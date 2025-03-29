@@ -1,11 +1,10 @@
 import { dataNoticias } from './cadastroData.js';
 
-class cadastroNoticias {
-
+class CadastroNoticias {
     constructor() {
         this.getDefaultScream();
     }
- 
+
     getDefaultScream() {
         this.scream = dataNoticias.defaultScreamData();
         const content = document.getElementById('content');
@@ -21,32 +20,27 @@ class cadastroNoticias {
 
         menuButtons.forEach(id => {
             const btn = document.getElementById(id);
-            if (btn) {
-                btn.addEventListener('click', () => alert("Tudo certo!"));
-            }
+            btn?.addEventListener('click', () => alert("Tudo certo!"));
         });
 
-        const btnAdicionar = document.getElementById('btnAdicionar');
-        if (btnAdicionar) {
-            btnAdicionar.addEventListener('click', () => this.getAddnews());
-        }
+        this.addEventListeners();
+    }
 
-        const btnFiltrar = document.getElementById('filtrar');
-        if (btnFiltrar) {
-            btnFiltrar.addEventListener('click', () => {
-                this.agendada = document.getElementById('agendada')?.checked;
-                this.rascunho = document.getElementById('rascunho')?.checked;
-                this.publicada = document.getElementById('publicada')?.checked;
-                this.excluir = document.getElementById('excluir')?.checked;
+    addEventListeners() {
+        this.getById('btnAdicionar')?.addEventListener('click', () => this.getAddnews());
 
-                this.idioma = document.getElementById('idioma')?.value;
-                this.categoria = document.getElementById('categoria')?.value;
-                this.titulo = document.getElementById('titulo')?.value;
-                this.de = document.getElementById('de')?.value;
-                this.ate = document.getElementById('ate')?.value;
-                this.tag = document.getElementById('tag')?.value;
-            });
-        }
+        this.getById('filtrar')?.addEventListener('click', () => {
+            this.agendada = this.getById('agendada')?.checked;
+            this.rascunho = this.getById('rascunho')?.checked;
+            this.publicada = this.getById('publicada')?.checked;
+            this.excluir = this.getById('excluir')?.checked;
+            this.idioma = this.getById('idioma')?.value;
+            this.categoria = this.getById('categoria')?.value;
+            this.titulo = this.getById('titulo')?.value;
+            this.de = this.getById('de')?.value;
+            this.ate = this.getById('ate')?.value;
+            this.tag = this.getById('tag')?.value;
+        });
     }
 
     getAddnews() {
@@ -54,87 +48,84 @@ class cadastroNoticias {
         if (!content) return;
 
         content.innerHTML = dataNoticias.addNewsScream();
-
         CKEDITOR.replace('editor');
 
-        const getById = (id) => document.getElementById(id);
-
-        const idiomaInput = getById('idioma');
-        const categoriaInput = getById('categoria');
-        const dataInput = getById('dia');
-        const horaInput = getById('hora');
-        const tagsInput = getById('tags');
-        const tituloInput = getById('titulo');
-        const descricaoInput = getById('descricao');
-
-        getById('btnExit')?.addEventListener('click', () => {
-            if (CKEDITOR.instances.editor) {
-                CKEDITOR.instances.editor.destroy();
-            }
-            this.getDefaultScream();
+        ['btnExit', 'btnCancelar'].forEach(btnId => {
+            this.getById(btnId)?.addEventListener('click', () => {
+                CKEDITOR.instances.editor?.destroy();
+                this.getDefaultScream();
+            });
         });
-        
-        getById('btnCancelar')?.addEventListener('click', () => {
-            if (CKEDITOR.instances.editor) {
-                CKEDITOR.instances.editor.destroy();
-            }
-            this.getDefaultScream();
-        }); 
 
-        getById('btnSalvar')?.addEventListener('click', async () => {  
+        this.getById('btnSalvar')?.addEventListener('click', async () => {
             const noticiaContent = CKEDITOR.instances.editor?.getData() || "";
 
             const dadosNoticia = {
-                idioma: idiomaInput?.value,
-                categoria: categoriaInput?.value,
-                data: dataInput?.value,
-                hora: horaInput?.value,
-                tags: tagsInput?.value,
-                titulo: tituloInput?.value,
-                descricao: descricaoInput?.value,
-                noticia: noticiaContent
+                user_id: this.getValue('user_id'),
+                idioma: this.getValue('idioma'),
+                categoria_id: this.getValue('categoria'),
+                post_data: this.getValue('dia'),
+                post_hora: this.getValue('hora'),
+                tags: this.getValue('tags'),
+                titulo: this.getValue('titulo'),
+                descricao: this.getValue('descricao'),
+                conteudo_noticia: noticiaContent
             };
 
-            const data = this.checkData(dadosNoticia);
+            const erro = this.checkData(dadosNoticia);
 
-            if (data !== "") {
-                this.alertModal(data);
+            if (erro) {
+                this.alertModal(erro);
             } else {
-                const request = await this.sendValues(dadosNoticia, "objeto", "../../controllers/admin/cadastroNoticiasAdmin.php");
+                const sucesso = await this.sendValues(dadosNoticia, "../../controllers/admin/cadastroNoticiasAdmin.php");
 
-                this.alertModal(request
+                this.alertModal(sucesso
                     ? `<p class="mt-5 p-2 fs-3">Dados adicionados com sucesso!</p>`
                     : `<p class="mt-5 p-2 fs-3 text-danger">Erro ao salvar os dados!</p>`);
-
             }
         });
     }
 
-    async sendValues(objeto, key, endereco) { 
-        if (typeof objeto === "object" && typeof key === "string" && typeof endereco === "string") {
+
+    async sendValues(dados, url){
+    
+        if(typeof dados === 'object' && typeof url === 'string'){
+         
             try {
-                const objetoString = JSON.stringify(objeto);
-                const url = `${endereco}?${key}=${encodeURIComponent(objetoString)}`;
-                const response = await fetch(url);
-                const data = await response.text();
-
-                console.log("Resposta do servidor:", data);
-
-                if(data) {
-                    return true;
-                } else {
-                    console.log("Erro na requisição:");
+            
+                const request = await fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dados)});
+                
+                 if(request.ok){
+                   
+                   const result = await request.json();
+                   
+                   if(result.sucesso === true){
+    
+                    console.log(result);
+                     return true;
+    
+                   } else {
+    
+                    console.log(result.message);
                     return false;
+    
+                   } 
+        
                 }
-
-            } catch (error) {
-                console.error("Erro na requisição:", error);
-                return false;
+    
+            } catch(error) {
+    
+              console.log(error);
+              return false;
             }
+    
         } else {
-            console.log("Tipo de dados incompatível");
-            return false;
+    
+          console.log('Tipo de dados incompatível!');
+          return false;
+    
         }
+    
     }
 
     alertModal(message) {
@@ -143,14 +134,16 @@ class cadastroNoticias {
             return;
         }
 
-        let existingModal = document.getElementById('alertModal');
-        if (existingModal) {
-            existingModal.remove();
+        let modal = document.getElementById('alertModal');
+
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'alertModal';
+            document.body.appendChild(modal);
         }
 
-        const modal = document.createElement('div');
         modal.innerHTML = `
-            <div class="modal fade show" id="alertModal" tabindex="-1" aria-hidden="true" style="display: block;">
+            <div class="modal fade show" tabindex="-1" aria-hidden="true" style="display: block;">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -165,31 +158,28 @@ class cadastroNoticias {
             </div>
         `;
 
-        document.body.appendChild(modal);
-        const modalAlert = modal.querySelector('#alertModal');
-
-        modal.querySelector('#btn-close').addEventListener('click', () => {
-            modalAlert.remove();
-        });
+        this.getById('btn-close')?.addEventListener('click', () => modal.remove());
     }
 
     checkData(objeto) {
-        let valoresNulos = "<p class='p-2 mt-4'>Valores nulos <br>";
-        let isNull = false;
+        const valoresNulos = Object.entries(objeto)
+            .filter(([_, valor]) => !valor)
+            .map(([chave]) => chave);
 
-        for (const [chave, valor] of Object.entries(objeto)) {
-            if (!valor) {
-                valoresNulos += `${chave} <br>`;
-                isNull = true;
-            }
-        }
+        return valoresNulos.length
+            ? `<p class='p-2 mt-4'>Valores nulos: <br>${valoresNulos.join("<br>")}</p>`
+            : "";
+    }
 
-        valoresNulos += "</p>";
+    getById(id) {
+        return document.getElementById(id);
+    }
 
-        return isNull ? valoresNulos : ""; 
+    getValue(id) {
+        return this.getById(id)?.value || "";
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new cadastroNoticias();
+    new CadastroNoticias();
 });

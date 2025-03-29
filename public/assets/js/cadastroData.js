@@ -43,8 +43,8 @@ export const dataNoticias = {
           </div>
         </div>
     
-        <div class="p-5">
-          <button class="btn btn-primary mt-4" id="btnAdicionar">Adicionar +</button>
+        <div class="p-5 d-flex">
+          <button class="btn btn-primary mt-4 ms-5" id="btnAdicionar">Adicionar +</button>
         </div>
     
         <div>
@@ -144,35 +144,37 @@ export const dataNoticias = {
                     <span><b>Status</b></span>
                   </div>
                   <div class="col-5 p-1">
-                      <input type="checkbox" name="Agendada" id="agendada">
-                      <label for="Agendada">Agendada</label>
+                      <input type="checkbox" name="agendada" id="agendada">
+                      <label for="agendada">Agendada</label>
                       <br>
                       <input type="checkbox" name="rascunho" id="rascunho">
                       <label for="rascunho">Rascunho</label>
                       <br>
-                      <input type="checkbox" name="Publicada" id="publicada">
-                      <label for="Publicada">Publicada</label>
+                      <input type="checkbox" name="publicada" id="publicada">
+                      <label for="publicada">Publicada</label>
                       <br>
-                      <input type="checkbox" name="Excluir" id="excluir">
-                      <label for="Excluir">Excluir</label>
+                      <span class="me-4">
+                        <input type="checkbox" name="excluir" id="excluir">
+                        <label for="excluir">Excluir</label>
+                      </span>
                   </div>
-                  <div class="col-11 p-1 mt-4 ms-2">
-                    <span><b>Indioma</b></span>
+                  <div class="col-11 p-1 mt-4 d-flex align-content-around flex-wrap">
+                    <span class="p-2"><b>Indioma</b></span>
                     <select class="form-select" id="idioma">
                       <option value="Portugues">Português (Brasil)</option>
                       <option value="Ingles">Inglês</option>
                     </select>
                     <br>
-                    <span><b>Categoria</b></span>
+                    <span class="p-2 mt-3"><b>Categoria</b></span>
                     <select class="form-select">
                       <option value="interface">Interface</option>
                       <option value="syber seguranca">Cyber Segurança</option>
                     </select>
                     <br>
-                    <span><b>Título</b></span>
+                    <span class="p-2 mt-3"><b>Título</b></span>
                     <input type="text" class="form-control" id="titulo">
                     <br>
-                    <span><b>De</b></span>
+                    <span class="p-2 mt-3"><b>De</b></span>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" aria-describedby="basic-addon2" id="de">
                       <span class="input-group-text" id="basic-addon2">
@@ -182,7 +184,7 @@ export const dataNoticias = {
                       </span>
                     </div>
                     <br>
-                    <span><b>Até</b></span>
+                    <span class="p-2 mt-3"><b>Até</b></span>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" aria-describedby="basic-addon2" id="ate">
                       <span class="input-group-text" id="basic-addon2">
@@ -192,10 +194,10 @@ export const dataNoticias = {
                       </span>
                     </div>
                     <br>
-                    <span><b>Tag</b></span>
+                    <span class="p-2 mt-3"><b>Tag</b></span>
                     <input type="text" class="form-control mt-1">
                     <br>
-                    <div class="d-grid gap-2 col-11 mx-auto">
+                    <div class="d-grid gap-2 col-11 mx-auto p-2 mt-5">
                       <button class="btn btn-primary" type="button" id="filtrar">Filtrar</button>
                     </div>
                   </div>
@@ -317,6 +319,10 @@ export const dataNoticias = {
                       <div class="me-4">Noticia</div>
                       <div class="col-10 ms-2"><textarea id="editor"></textarea></div>
                     </div>
+                  </div>
+                  <div class="mt-5 d-flex justify-content-center">
+                  <label for="user_id" class="me-2 d-flex">
+                  <input type="text" name="user_id" class="form-control" id="user_id">
                   </div>
                   <div class="mt-3 col-12">
                     <div class="d-flex justify-content-end p-4">
