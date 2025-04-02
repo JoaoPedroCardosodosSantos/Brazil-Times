@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Website</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../../../public/assets/styles/index.css" />
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <!-- <h1 class="display-4 fw-bold">Welcome to Our Website</h1>
+                <p class="lead">Create something amazing with our innovative solutions</p>
+                <a href="#" class="btn btn-primary btn-lg">Get Started</a> -->
+            <img src="../../../public\assets\Logo\BlackHatagemLogo.png" alt="BlackHatagemLogo" class="img-fluid" />
+            <!-- <h1 class="slogan display-7 fw-bold">O underground digital ao seu alcance</h1> -->
+        </div>
+    </section>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="SignPage.html">Sign-in</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slideshow Section -->
+    <section class="slideshow-container">
+        <div id="mainSlideshow" class="carousel slide" data-bs-ride="carousel"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide-box">
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/network-security-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="networkSecurityModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#networkSecurityModal">
+                                    <h3 class="card-title">Network Security</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/application-security-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="applicationSecurityModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#applicationSecurityModal">
+                                    <h3 class="card-title">Application Security</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/cloud-security-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="cloudSecurityModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#cloudSecurityModal">
+                                    <h3 class="card-title">Cloud Security</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-box">
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/endpoint-security-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="endpointSecurityModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#endpointSecurityModal">
+                                    <h3 class="card-title">Endpoint Security</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/database-security-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="databaseSecurityModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#databaseSecurityModal">
+                                    <h3 class="card-title">Database Security</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/cryptography-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="cryptographyModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#cryptographyModal">
+                                    <h3 class="card-title">Cryptography</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-box">
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/digital-forensics-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="digitalForensicsModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#digitalForensicsModal">
+                                    <h3 class="card-title">Digital Forensics</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/penetration-testing-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="penetrationTestingModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#penetrationTestingModal">
+                                    <h3 class="card-title">Penetration Testing (Pentesting)</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/reverse-engineering-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="reverseEngineeringModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#reverseEngineeringModal">
+                                    <h3 class="card-title">Reverse Engineering</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-box">
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/rb-team-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="redTeamModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#redTeamModal">
+                                    <h3 class="card-title">Red Team - Red Team</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/threat-intelligence-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="threatIntelligenceModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#threatIntelligenceModal">
+                                    <h3 class="card-title">Threat Intelligence</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/identity-access-management-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="identityAccessManagementModal" class="btn"
+                                    data-bs-toggle="modal" data-bs-target="#identityAccessManagementModal">
+                                    <h3 class="card-title">
+                                        Identity and Access Management (IAM)
+                                    </h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-box">
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/malware-analysis-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" id="malwareAnalysisModal" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#malwareAnalysisModal">
+                                    <h3 class="card-title">Malware Analysis</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/iot-security-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#iotSecurityModal">
+                                    <h3 class="card-title">IoT Security</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card feature-card h-100" style="
+                  background-image: url('../../../uploads/Features-card-images/soc-background.webp');
+                ">
+                            <div class="card-body text-center">
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#socModal">
+                                    <h3 class="card-title">SOC (Security Operations Center)</h3>
+                                    <p class="card-text"></p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="prev-btn">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="next-btn">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- news main section -->
+
+    <section class="py-5" id="news-section"></section>
+
+    <!-- Contact Section -->
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name" required />
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" required />
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 BlackHatagem. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../../public/assets/js/index.js"></script>
+    <script src="../../../public/assets/js/getNewsUser.js" type="module"></script>
+</body>
+
+</html>
