@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Imagens Simplificada</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Ícones Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .search-container {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .image-card {
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .image-thumbnail {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegação Simplificada -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../public/assets/images/logo brazil_times.svg" width="450px" height="60px"> 
+            </a>
+            <div class="d-flex">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar imagens...">
+                    <button class="btn btn-outline-secondary" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Filtro Simplificado -->
+        <div class="mb-4">
+            <select class="form-select w-auto d-inline-block me-2">
+                <option selected>Todas Categorias</option>
+                <option>Cybersec</option>
+                <option>Infra</option>
+                <option>Codigos</option>
+                <option>Desenvolvimento </option>
+            </select>
+        </div>
+
+        <!-- Resultados da Busca -->
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h4>Resultados para "Segurança"</h4>
+                <p class="text-muted">Mostrando 8 imagens</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Card de Imagem 1 -->
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card image-card">
+                    <img src="https://source.unsplash.com/random/300x200?nature" class="card-img-top image-thumbnail" alt="Segurança">
+                    <div class="card-body">
+                        <h6 class="card-title">Segurança</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Imagem 2 -->
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card image-card">
+                    <img src="https://source.unsplash.com/random/300x200?mountain" class="card-img-top image-thumbnail" alt="Web">
+                    <div class="card-body">
+                        <h6 class="card-title">Web</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-download"></i> Exibir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Imagem 3 -->
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card image-card">
+                    <img src="https://source.unsplash.com/random/300x200?lake" class="card-img-top image-thumbnail" alt="C2">
+                    <div class="card-body">
+                        <h6 class="card-title">C2 - Command and Control</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-download"></i> Exibir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Imagem 4 -->
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card image-card">
+                    <img src="https://source.unsplash.com/random/300x200?forest" class="card-img-top image-thumbnail" alt="Cybersec">
+                    <div class="card-body">
+                        <h6 class="card-title">Cybersec</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-download"></i> Exibir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards 5-8 (similares) -->
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card image-card">
+                    <img src="https://source.unsplash.com/random/300x200?sunset" class="card-img-top image-thumbnail" alt="Certificados">
+                    <div class="card-body">
+                        <h6 class="card-title">Certificados</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-download"></i> Exibir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card image-card">
+                    <img src="https://source.unsplash.com/random/300x200?waterfall" class="card-img-top image-thumbnail" alt="Certificações">
+                    <div class="card-body">
+                        <h6 class="card-title">Certificações</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-download"></i> Exibir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card image-card">
+                    <img src="https://source.unsplash.com/random/300x200?desert" class="card-img-top image-thumbnail" alt="Desenvolvimento">
+                    <div class="card-body">
+                        <h6 class="card-title">Desenvolvimento</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-download"></i> Exibir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card image-card">
+                    <img src="https://source.unsplash.com/random/300x200?ocean" class="card-img-top image-thumbnail" alt="Infra">
+                    <div class="card-body">
+                        <h6 class="card-title">Infra</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-download"></i> Exibir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Próxima</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
