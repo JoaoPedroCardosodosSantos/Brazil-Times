@@ -1,63 +1,66 @@
-CREATE DATABASE blogdb;
-USE blogdb;
+CREATE DATABASE Blogdb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(60) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+USE Blogdb;
+
+CREATE TABLE Usuarios(
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(40) NOT NULL UNIQUE,
+    Email VARCHAR(60) NOT NULL UNIQUE,
+    Senha VARCHAR(225) NOT NULL,
+    Idade INT CHECK (Idade >= 12 AND Idade <= 100),
+    User_Name VARCHAR(20) NOT NULL UNIQUE
 );
 
-CREATE INDEX idx_username ON users(username);
-CREATE INDEX idx_email ON users(email);
-
-
-CREATE TABLE categorias (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(50) NOT NULL UNIQUE,
-    descricao TEXT NULL
+CREATE TABLE Imagens(
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Titulo VARCHAR(40) NOT NULL UNIQUE,
+    Link VARCHAR(250) NOT NULL UNIQUE,
+    Descricao VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE posts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    categoria_id INT NULL,
-    idioma VARCHAR(20) NOT NULL,
-    post_data DATE NOT NULL,
-    post_hora TIME NOT NULL, 
-    tags VARCHAR(255) NULL, 
-    titulo VARCHAR(255) NOT NULL,
-    descricao TEXT NULL DEFAULT NULL,
-    conteudo_noticia TEXT NOT NULL,
-    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE SET NULL
+CREATE TABLE Noticia ( 
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    User_id INT NOT NULL,
+    Idioma ENUM('pt-br', 'en'),
+    Categoria ENUM(
+        'Segurança de Redes',
+        'Segurança de Aplicações',
+        'Segurança em Cloud',
+        'Segurança de Endpoint',
+        'Segurança de Banco de Dados',
+        'Criptografia',
+        'Forense Digital',
+        'Pentesting',
+        'Engenharia Reversa',
+        'Red Team',
+        'Blue Team',
+        'Threat Intelligence',
+        'Gestão de Identidade e Acesso (IAM)',
+        'Análise de Malware',
+        'Segurança de IoT',
+        'Segurança de Sistemas Operacionais',
+        'Segurança Mobile',
+        'Governança, Risco e Compliance (GRC)',
+        'SOC (Security Operations Center)',
+        'Linux'
+    ) NOT NULL,
+    Data DATE NOT NULL,
+    Hora TIME NOT NULL,
+    Tags JSON NOT NULL,
+    Titulo VARCHAR(100) NOT NULL UNIQUE,
+    Descricao VARCHAR(100) NOT NULL UNIQUE,
+    Noticia TEXT NOT NULL,
+    Data_Criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    Status ENUM('Publicado', 'Rascunho', 'Removido') NOT NULL,
+    FOREIGN KEY (User_id) REFERENCES Usuarios(Id) ON DELETE CASCADE
 );
 
-CREATE INDEX idx_post_user ON posts(user_id);
-CREATE INDEX idx_post_categoria ON posts(categoria_id);
-CREATE INDEX idx_post_data ON posts(post_data);
-
-CREATE TABLE comments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    post_id INT NOT NULL,
-    user_id INT NOT NULL,
-    content TEXT NOT NULL,
-    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+-- Adicione um usuário
+INSERT INTO Usuarios(Nome, Email, Senha, Idade, User_Name) VALUES (
+    'Nome do usuario',
+    'emaildousuario@gmail.com',
+    'J2563&%$@?//QQE8[]',
+    23,
+    'User Name'
 );
-
-CREATE INDEX idx_comments_post ON comments(post_id);
-CREATE INDEX idx_comments_user ON comments(user_id);
-
-CREATE TABLE post_status (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    post_id INT NOT NULL UNIQUE,
-    status ENUM('excluida', 'agendada', 'rascunho', 'publicada') NOT NULL DEFAULT 'rascunho',
-    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
-);
-
-CREATE INDEX idx_status_post ON post_status(post_id);
