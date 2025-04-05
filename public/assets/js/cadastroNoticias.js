@@ -47,6 +47,10 @@ class cadastroNoticias {
                 this.tag = document.getElementById('tag')?.value;
             });
         }
+
+        document.getElementById('imagens').addEventListener('click', () => {
+            document.getElementById('content').innerHTML = dataNoticias.getImage();
+        });
     }
 
     getAddnews() {
@@ -100,35 +104,41 @@ class cadastroNoticias {
             if (data !== "") {
                 this.alertModal(data);
             } else {
-                const request = await this.sendValues(dadosNoticia, "objeto", "../../controllers/admin/cadastroNoticiasAdmin.php");
+                console.log(dadosNoticia);
+                const request = await this.sendValues(dadosNoticia, "../../controllers/admin/cadastroNoticiasAdmin.php");
 
-                this.alertModal(request
-                    ? `<p class="mt-5 p-2 fs-3">Dados adicionados com sucesso!</p>`
-                    : `<p class="mt-5 p-2 fs-3 text-danger">Erro ao salvar os dados!</p>`);
-
+                this.alertModal(request ? `<p class="mt-5 p-2 fs-3">Dados adicionados com sucesso!</p>` : `<p class="mt-5 p-2 fs-3 text-danger">Erro ao salvar os dados!</p>`);
             }
         });
     }
 
-    async sendValues(objeto, key, endereco) { 
-        if (typeof objeto === "object" && typeof key === "string" && typeof endereco === "string") {
+    async sendValues(objeto, url) {
+        if (typeof objeto === "object" && typeof url === "string") {
             try {
-                const objetoString = JSON.stringify(objeto);
-                const url = `${endereco}?${key}=${encodeURIComponent(objetoString)}`;
-                const response = await fetch(url);
-                const data = await response.text();
-
-                console.log("Resposta do servidor:", data);
-
-                if(data) {
-                    return true;
-                } else {
-                    console.log("Erro na requisição:");
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(objeto)
+                });
+    
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error(`Erro na resposta: ${response.status} - ${errorText}`);
                     return false;
                 }
+    
+                const jsonResponse = await response.json();
 
+                console.log(jsonResponse);
+                
+                if(jsonResponse.success) {
+                    return true;
+                }
+    
             } catch (error) {
-                console.error("Erro na requisição:", error);
+                console.error('Erro na requisição:', error);
                 return false;
             }
         } else {

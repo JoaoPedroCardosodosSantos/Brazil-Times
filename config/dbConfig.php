@@ -5,10 +5,10 @@ class Banco {
 
     private $dbConfig = [
         'host' => 'localhost',
-        'dbname' => 'blogdb',
+        'dbname' => 'Blogdb',
         'charset' => 'utf8',
         'user' => 'root',
-        'password' => ''
+        'password' => 'Mysql12@root'
     ];
 
     private $pdo;
@@ -27,7 +27,7 @@ class Banco {
 
         $dsn = "mysql:host={$this->dbConfig['host']};dbname={$this->dbConfig['dbname']};charset={$this->dbConfig['charset']}";
 
-        while($this->tentativas > 5) {
+        while($this->tentativas > 0) {
 
             try {
 
