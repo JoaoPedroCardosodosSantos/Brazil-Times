@@ -6,7 +6,11 @@ class Rota {
         '/docs' => '/docs/README.html',
         '/app' => '/app/views/user/index.html',
         '/app/views' => '/app/views/user/index.html',
+<<<<<<< HEAD
         '/404' => '/app/views/errors/404_not_found.html'
+=======
+        '/404' => '/app/views/errors/404_Not_Found.html'
+>>>>>>> main
     ];
 
     public function __construct() {
@@ -45,7 +49,11 @@ class Rota {
             exit;
         }
     }
+<<<<<<< HEAD
 }
 
 new Rota();
 ?>
+=======
+}
+>>>>>>> main
