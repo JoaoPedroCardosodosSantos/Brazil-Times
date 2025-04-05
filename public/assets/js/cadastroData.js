@@ -32,6 +32,13 @@ export const dataNoticias = {
                   <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#000000"><path d="M480-120q-151 0-255.5-46.5T120-280v-400q0-66 105.5-113T480-840q149 0 254.5 47T840-680v400q0 67-104.5 113.5T480-120Zm0-479q89 0 179-25.5T760-679q-11-29-100.5-55T480-760q-91 0-178.5 25.5T200-679q14 30 101.5 55T480-599Zm0 199q42 0 81-4t74.5-11.5q35.5-7.5 67-18.5t57.5-25v-120q-26 14-57.5 25t-67 18.5Q600-528 561-524t-81 4q-42 0-82-4t-75.5-11.5Q287-543 256-554t-56-25v120q25 14 56 25t66.5 18.5Q358-408 398-404t82 4Zm0 200q46 0 93.5-7t87.5-18.5q40-11.5 67-26t32-29.5v-98q-26 14-57.5 25t-67 18.5Q600-328 561-324t-81 4q-42 0-82-4t-75.5-11.5Q287-343 256-354t-56-25v99q5 15 31.5 29t66.5 25.5q40 11.5 88 18.5t94 7Z"/></svg>
                 </button>
               </li>
+              <li>
+                <button class="dropdown-item" id="imagens">
+                  Imagens
+                  <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#000000"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg>
+                </button>
+              </li>
+
             </ul>
           </div>
           
@@ -159,8 +166,8 @@ export const dataNoticias = {
                   <div class="col-11 p-1 mt-4 ms-2">
                     <span><b>Indioma</b></span>
                     <select class="form-select" id="idioma">
-                      <option value="Portugues">Português (Brasil)</option>
-                      <option value="Ingles">Inglês</option>
+                      <option value="pt-br">Português (Brasil)</option>
+                      <option value="en">Inglês</option>
                     </select>
                     <br>
                     <span><b>Categoria</b></span>
@@ -285,35 +292,33 @@ export const dataNoticias = {
                         <div class="d-flex">
                           <label for="idioma" class="p-2">Idioma</label>
                           <select name="idioma" class="form-select" id="idioma">
-                            <option >Portugês (Brasil)</option>
-                            <option>Inglês</option>
+                            <option value="pt-br">Português (Brasil)</option>
+                            <option value="en">Inglês</option>
                           </select>
                         </div>
                         <br>
                         <div class="d-flex">
                           <label for="categoria" class="p-2">Categoria</label>
                           <select name="categoria" class="form-select" id="categoria">
-                            <option >Cyber Segurança</option>
-                            <option>Linux</option>
-                            <option>Segurança de Redes</option>
-                            <option>Segurança de Aplicações</option>
-                            <option>Segurança em Cloud</option>
-                            <option>Segurança de Endpoint</option>
-                            <option>Segurança de Banco de Dados</option>
-                            <option>Criptografia</option>
-                            <option>Forense Digital</option>
-                            <option>Pentesting</option>
-                            <option>Engenharia Reversa</option>
-                            <option>Red Team</option>
-                            <option>Blue Team</option>
-                            <option>Threat Intelligence</option>
-                            <option>Gestão de Identidade e Acesso (IAM)</option>
-                            <option>Análise de Malware</option>
-                            <option>Segurança de IoT</option>
-                            <option>Segurança de Sistemas Operacionais</option>
-                            <option>Segurança Mobile</option>
-                            <option>Governança, Risco e Compliance (GRC)</option>
-                            <option>SOC (Security Operations Center)</option>
+                              <option>Segurança de Aplicações</option>
+                              <option>Segurança em Cloud</option>
+                              <option>Segurança de Endpoint</option>
+                              <option>Segurança de Banco de Dados</option>
+                              <option>Criptografia</option>
+                              <option>Forense Digital</option>
+                              <option>Pentesting</option>
+                              <option>Engenharia Reversa</option>
+                              <option>Red Team</option>
+                              <option>Blue Team</option>
+                              <option>Threat Intelligence</option>
+                              <option>Gestão de Identidade e Acesso (IAM)</option>
+                              <option>Análise de Malware</option>
+                              <option>Segurança de IoT</option>
+                              <option>Segurança de Sistemas Operacionais</option>
+                              <option>Governança, Risco e Compliance (GRC)</option>
+                              <option>Segurança Mobile</option>
+                              <option>SOC (Security Operations Center)</option>
+                              <option>Linux</option>
                           </select>
                         </div>
                         <br>
@@ -350,6 +355,7 @@ export const dataNoticias = {
                           <span class="me-4">Descrição</span>
                           <textarea name="subtitulo" id="descricao" class="col-9"></textarea>
                         </div>
+                        <br>
                     </div>
                     <div class="mt-5 d-flex justify-content-center">
                       <div class="me-4">Noticia</div>
@@ -371,6 +377,47 @@ export const dataNoticias = {
           `
         ];
 
+    },
+
+    getImage() {
+
+      return [`
+
+            <div class="container mt-5" id="content">
+              <div class="border border-secondary">
+                <h2>Enviar Imagem</h2>
+                <br><br>
+                <form action="../../controllers/admin/upload.php" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="imagem" required>
+                    <br>
+                    <br>
+                    <label for="titulo">Título</label>
+                    <input type="text" name="titulo" required>
+                    <br>
+                    <br>
+                    <label for="descricao">Descrição</label>
+                    <input type="text" name="descricao" required>
+                    <br>
+                    <br>
+                    <button type="submit">Enviar</button>
+                </form>
+
+                <div class="mt-5 border border-secondary">
+                  <h2>Consultar Imagem</h2>
+                  <form action="../../controllers/admin/consultaImagem.php" method="POST" enctype="multipart/form-data">
+                    <br>
+                    <label for="titulo">Título</label>
+                    <input type="text" name="titulo" required>
+                    <br>
+                    <br>
+                    <button type="submit">Enviar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="b-example-divider"></div>
+
+        `];
     }
 
   };
