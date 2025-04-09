@@ -1,10 +1,14 @@
-<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1200" height="400">
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500">
 	<title>New Project</title>
 	<defs>
-		<linearGradient id="g1" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(246.271,858.85,-2025.495,580.801,628.364,-179.925)">
-			<stop offset="0" stop-color="#4227cd"/>
-			<stop offset=".01" stop-color="#4227cd"/>
-			<stop offset="1" stop-color="#ffffff"/>
+		<linearGradient id="g1" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(276.709,965,-2275.837,652.586,613.145,-233)">
+			<stop offset="-0.029" stop-color="#000000"/>
+			<stop offset="0" stop-color="#000000"/>
+			<stop offset=".255" stop-color="#06081c"/>
+			<stop offset=".397" stop-color="#06081c"/>
+			<stop offset=".466" stop-color="#070b2a"/>
+			<stop offset=".7" stop-color="#101e8d"/>
+			<stop offset="1" stop-color="#101e8d"/>
 		</linearGradient>
 	</defs>
 	<style>
